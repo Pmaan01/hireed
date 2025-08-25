@@ -1,0 +1,68 @@
+/* src/styles/theme.css */
+:root {
+  --bg: #ffffff;
+  --bg-muted: #f8fafc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #2563eb;
+  --accent-contrast: #ffffff;
+  --badge-bg: #eef2ff;
+  --badge-text: #3730a3;
+  --code-bg: #0b1020;
+  --code-text: #e5e7eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220;
+    --bg-muted: #0f172a;
+    --card: #0f172a;
+    --border: #1f2a44;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --accent: #3b82f6;
+    --accent-contrast: #0b1220;
+    --badge-bg: #1e293b;
+    --badge-text: #c7d2fe;
+    --code-bg: #0b1020;
+    --code-text: #e5e7eb;
+  }
+}
+
+/* Explicit override via data-theme attribute */
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-muted: #f8fafc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #2563eb;
+  --accent-contrast: #ffffff;
+  --badge-bg: #eef2ff;
+  --badge-text: #3730a3;
+  --code-bg: #0b1020;
+  --code-text: #e5e7eb;
+}
+:root[data-theme="dark"] {
+  --bg: #0b1220;
+  --bg-muted: #0f172a;
+  --card: #0f172a;
+  --border: #1f2a44;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-contrast: #0b1220;
+  --badge-bg: #1e293b;
+  --badge-text: #c7d2fe;
+  --code-bg: #0b1020;
+  --code-text: #e5e7eb;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
