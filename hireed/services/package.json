@@ -1,0 +1,21 @@
+{
+  "name": "job-market",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Job market microservice for HireEd (fetcher + small API)",
+  "main": "fetcher.js",
+  "scripts": {
+    "start": "node fetcher.js",
+    "api": "node api/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.11.0",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "pg": "^8.16.3",
+    "string-similarity": "^4.0.4"
+  }
+}

@@ -1,0 +1,294 @@
+/* Enhanced Home Page Styles with Responsive Design & Light/Dark Mode */
+
+.home {
+  padding: clamp(16px, 4vw, 48px);
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  display: block; /* Changed from flex */
+  /* Removed justify-content: center */
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero {
+  margin-bottom: clamp(40px, 8vw, 80px);
+  padding: clamp(20px, 5vw, 60px) 0;
+}
+
+.hero-title {
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: clamp(12px, 3vw, 20px);
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light, var(--accent)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Fallback for browsers that don't support background-clip: text */
+  color: var(--accent);
+}
+
+/* Ensure text is visible in both light and dark modes */
+@supports not (-webkit-background-clip: text) {
+  .hero-title {
+    color: var(--accent);
+    -webkit-text-fill-color: initial;
+  }
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--muted);
+  margin-bottom: clamp(24px, 5vw, 32px);
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: clamp(12px, 3vw, 16px) clamp(20px, 5vw, 32px);
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid var(--accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: var(--accent-hover, var(--accent));
+}
+
+.cta-btn:hover::before {
+  left: 100%;
+}
+
+.cta-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(16px, 3vw, 32px);
+  margin-bottom: clamp(32px, 6vw, 48px);
+}
+
+.feature {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: clamp(20px, 4vw, 32px);
+  text-align: left;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light, var(--accent)));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent);
+}
+
+.feature:hover::before {
+  transform: scaleX(1);
+}
+
+.feature h3 {
+  margin-bottom: clamp(8px, 2vw, 16px);
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feature p {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Enhanced responsive breakpoints */
+@media (max-width: 768px) {
+  .home {
+    padding: 16px;
+    min-height: 100vh; /* Changed from calc */
+  }
+  
+  .features {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .hero {
+    margin-bottom: 40px;
+    padding: 20px 0;
+  }
+  
+  .feature {
+    padding: 20px;
+  }
+  
+  .cta-btn {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    padding: 12px;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-sub {
+    font-size: 1rem;
+  }
+  
+  .feature h3 {
+    font-size: 1.1rem;
+  }
+  
+  .feature p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .feature:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .cta-btn {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cta-btn:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Light mode specific adjustments */
+@media (prefers-color-scheme: light) {
+  .feature {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  .feature:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .feature {
+    border-width: 2px;
+  }
+  
+  .cta-btn {
+    border-width: 3px;
+  }
+  
+  .hero-title {
+    -webkit-text-fill-color: initial;
+    color: var(--text);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cta-btn,
+  .feature,
+  .cta-btn::before {
+    transition: none;
+  }
+  
+  .cta-btn:hover {
+    transform: none;
+  }
+  
+  .feature:hover {
+    transform: none;
+  }
+  
+  .feature::before {
+    transform: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.cta-btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .home {
+    padding: 0;
+    color: black;
+    background: white;
+  }
+  
+  .cta-btn {
+    background: transparent;
+    color: black;
+    border: 2px solid black;
+  }
+  
+  .feature {
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,427 @@
+/* Signup/Auth Page Styles with Responsive Design & Light/Dark Mode */
+
+.authPage {
+  padding: clamp(16px, 4vw, 48px);
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container.narrow {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Auth Header */
+.h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: clamp(12px, 3vw, 16px);
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light, var(--accent)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--accent);
+}
+
+@supports not (-webkit-background-clip: text) {
+  .h1 {
+    color: var(--accent);
+    -webkit-text-fill-color: initial;
+  }
+}
+
+.sub {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--muted);
+  margin-bottom: clamp(24px, 5vw, 32px);
+  line-height: 1.5;
+}
+
+/* Auth Card */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: clamp(24px, 5vw, 32px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light, var(--accent)));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+.card:focus-within::before {
+  opacity: 1;
+}
+
+/* Form Elements */
+.label {
+  display: block;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: clamp(6px, 1.5vw, 8px);
+}
+
+.input {
+  width: 100%;
+  padding: clamp(14px, 3vw, 16px);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  margin-bottom: clamp(4px, 1vw, 6px);
+}
+
+.input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb, 59, 130, 246), 0.1);
+  background: var(--card);
+  transform: translateY(-1px);
+}
+
+.input:hover:not(:focus) {
+  border-color: var(--accent);
+  background: var(--card);
+}
+
+/* Special styling for code input */
+.input[inputmode="numeric"] {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  letter-spacing: 0.1em;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Button Styles */
+.button {
+  width: 100%;
+  padding: clamp(14px, 3vw, 18px) clamp(20px, 4vw, 24px);
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--accent-hover, var(--accent));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  background: var(--muted);
+  color: var(--bg);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Utility Classes */
+.mt2 {
+  margin-top: clamp(16px, 3vw, 20px);
+}
+
+/* Stage Transition Animation */
+.card > * {
+  animation: fadeInSlide 0.4s ease-out;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading State Enhancement */
+.button:disabled {
+  position: relative;
+}
+
+.button:disabled::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Code Input Enhancement */
+.input[inputmode="numeric"]:focus {
+  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+}
+
+/* Back Button (if needed) */
+.back-button {
+  background: none;
+  border: 2px solid var(--border);
+  color: var(--text);
+  width: auto;
+  padding: clamp(10px, 2vw, 12px) clamp(16px, 3vw, 20px);
+  margin-bottom: clamp(16px, 3vw, 20px);
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 500;
+}
+
+.back-button:hover:not(:disabled) {
+  background: var(--card);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Success/Error States for Inputs */
+.input.success {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.input.error {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.input.success:focus {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.input.error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .authPage {
+    padding: 16px;
+    justify-content: flex-start;
+    padding-top: clamp(40px, 10vw, 80px);
+  }
+  
+  .container.narrow {
+    max-width: 100%;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .authPage {
+    padding: 12px;
+    padding-top: clamp(30px, 8vw, 60px);
+  }
+  
+  .card {
+    padding: 16px;
+  }
+  
+  .input {
+    padding: 12px;
+  }
+  
+  .button {
+    padding: 14px 20px;
+  }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card:focus-within {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  .button {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button:hover:not(:disabled) {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  .back-button:hover:not(:disabled) {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Light mode specific adjustments */
+@media (prefers-color-scheme: light) {
+  .card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+  
+  .card:focus-within {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .back-button:hover:not(:disabled) {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 2px;
+  }
+  
+  .input {
+    border-width: 3px;
+  }
+  
+  .button {
+    border: 3px solid var(--accent);
+  }
+  
+  .back-button {
+    border-width: 3px;
+  }
+  
+  .h1 {
+    -webkit-text-fill-color: initial;
+    color: var(--text);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .input,
+  .button,
+  .back-button,
+  .card::before,
+  .button::before,
+  .card > * {
+    transition: none;
+    animation: none;
+  }
+  
+  .input:focus,
+  .button:hover:not(:disabled),
+  .back-button:hover:not(:disabled) {
+    transform: none;
+  }
+  
+  .button:disabled::after {
+    animation: none;
+  }
+}
+
+/* Focus trap for better accessibility */
+.card:focus-within {
+  isolation: isolate;
+  z-index: 1;
+}
+
+/* Print styles */
+@media print {
+  .authPage {
+    padding: 0;
+    color: black;
+    background: white;
+  }
+  
+  .card {
+    background: white;
+    border: 2px solid #333;
+    box-shadow: none;
+  }
+  
+  .button,
+  .back-button {
+    background: transparent;
+    color: black;
+    border: 2px solid black;
+  }
+}
